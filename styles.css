@@ -127,8 +127,46 @@
     background-size:cover; background-position:center; background-repeat:no-repeat;
     opacity:0.8; z-index:0;
   }
+  
+  /* Эффект дыма/тумана на локациях */
+  .city::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse 80% 40% at 20% 30%, rgba(255,255,255,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 30% at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 20% at 50% 50%, rgba(255,255,255,0.15) 0%, transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+    animation: fogDrift 15s ease-in-out infinite;
+    /* Временная отладка - яркий цвет для проверки */
+    /* background: rgba(255, 0, 0, 0.3); */
+  }
+  
+  @keyframes fogDrift {
+    0%, 100% {
+      transform: translateX(-8px) translateY(-4px);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateX(12px) translateY(-8px);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateX(6px) translateY(8px);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateX(-12px) translateY(4px);
+      opacity: 0.6;
+    }
+  }
             .city .row{
-            position:relative; z-index:1; padding-top:60px;
+            position:relative; z-index:2; padding-top:60px;
           }
   .row{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; align-items:center; min-height:120px}
   
