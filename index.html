@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Караваны — рынок</title>
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏕️</text></svg>">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Караваны — рынок</h1>
+    <div class="controls">
+      <button id="btnUpdate" class="primary">Обновить цены (2 города)</button>
+      <button id="btnRaid">Проверить засаду (50%)</button>
+      <span id="raidResult" aria-live="polite"></span>
+    </div>
+  </header>
+
+  <main id="board" class="grid">
+    <!-- 4 виджета городов -->
+  </main>
+
+  <footer>
+    <small>База: все товары = 2. Показаны только дешёвые (1) и дорогие (3).</small>
+  </footer>
+
+  <!-- Готовый JS (собран из TypeScript) -->
+  <script type="module" src="dist/main.js"></script>
+</body>
+</html>
