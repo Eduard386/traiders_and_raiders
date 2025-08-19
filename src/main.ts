@@ -119,9 +119,14 @@ function render(){
   });
 }
 
-btnUpdate.addEventListener("click", updateTwoCities);
+btnUpdate.addEventListener("click", (e) => {
+  createParticles(e.target as HTMLElement);
+  updateTwoCities();
+});
 
-btnRaid.addEventListener("click", ()=>{
+btnRaid.addEventListener("click", (e)=>{
+  createParticles(e.target as HTMLElement);
+  
   const hit = Math.random() < 0.5;
   if(hit){
     // Показываем анимацию засады
@@ -163,6 +168,43 @@ btnRaid.addEventListener("click", ()=>{
     }, 5000);
   }
 });
+
+// Функция для создания эффекта частиц
+function createParticles(button: HTMLElement) {
+  const rect = button.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  
+  // Создаем 8-12 частиц
+  const particleCount = Math.floor(Math.random() * 5) + 8;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    
+    // Случайный размер частицы
+    const size = Math.random() * 8 + 4;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    
+    // Случайное смещение по X
+    const xOffset = (Math.random() - 0.5) * 80;
+    particle.style.setProperty('--x-offset', `${xOffset}px`);
+    
+    // Позиционируем частицу
+    particle.style.left = `${centerX}px`;
+    particle.style.top = `${centerY}px`;
+    
+    document.body.appendChild(particle);
+    
+    // Удаляем частицу после анимации
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 1000);
+  }
+}
 
 // начальный рендер
 render();
