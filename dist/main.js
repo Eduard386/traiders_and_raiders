@@ -91,6 +91,10 @@ function render() {
                 img.className = "good-image";
                 t.appendChild(img);
                 row.appendChild(t);
+                // Добавляем анимацию появления с небольшой задержкой для каждого товара
+                setTimeout(() => {
+                    t.style.animation = 'fadeInScale 1.2s ease-out forwards';
+                }, i * 200); // Увеличенная задержка для каждого товара
             }
         });
     });
