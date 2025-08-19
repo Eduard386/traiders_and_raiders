@@ -33,11 +33,38 @@
   .controls:last-child{
     justify-content:flex-start; /* Кнопка прижата к левому краю правой колонки */
   }
+  /* Вариант 1: Пергаментные свитки */
   button{
-    padding:12px 14px; font-size:16px; border-radius:10px; border:1px solid var(--border);
-    background:#fff; cursor:pointer;
+    padding:14px 20px; font-size:16px; font-weight:bold; font-family: inherit;
+    border:none; border-radius:8px; cursor:pointer; position:relative;
+    background:linear-gradient(145deg, #f4e4bc, #e8d5a3);
+    color:#5a4a2a; text-shadow:1px 1px 2px rgba(0,0,0,0.1);
+    box-shadow:0 4px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.3);
+    transition:all 0.3s ease;
+    border:2px solid #c9b899;
+    width:160px; /* Фиксированная ширина для обеих кнопок */
   }
-  button.primary{background:#222; color:#fff}
+  button::before{
+    content:""; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px;
+    background:linear-gradient(45deg, #8B4513, #A0522D, #CD853F, #D2B48C);
+    border-radius:10px; z-index:-1; opacity:0.7;
+  }
+  button:hover{
+    transform:translateY(-2px); 
+    box-shadow:0 6px 12px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.4);
+    background:linear-gradient(145deg, #f6e6be, #ebd7a5);
+  }
+  button:active{
+    transform:translateY(0px);
+    box-shadow:0 2px 4px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
+  }
+  button.primary{
+    background:linear-gradient(145deg, #d4b896, #c4a882);
+    color:#3a2f1a; border-color:#a68b5b;
+  }
+  button.primary:hover{
+    background:linear-gradient(145deg, #d6ba98, #c6aa84);
+  }
   #raidResult{min-width:160px; font-weight:600}
   
   .grid{
@@ -60,21 +87,43 @@
             position:relative; z-index:1; padding-top:60px;
           }
   .row{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; align-items:center; min-height:120px}
+  
+  /* Новые стили для товаров - Вариант 3 */
   .token{
-    padding:0; border:6px solid var(--border); border-radius:16px; background:transparent;
-    display:inline-block; line-height:0;
+    padding:0; border:3px solid var(--border); border-radius:16px; 
+    background:rgba(255,255,255,0.9); display:inline-block; line-height:0; 
+    position:relative; box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    transition:all 0.3s ease;
+  }
+  .token:hover{
+    transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.2);
   }
   .good-image{
     width:90px; height:90px; object-fit:contain;
-    border-radius:10px; display:block;
+    border-radius:13px; display:block;
   }
   .token.cheap{
-    border-color:#d7263d; /* приглушенная красная рамка для дешевых товаров */
+    border-color:#d7263d; 
+    background:linear-gradient(135deg, rgba(215,38,61,0.1), rgba(255,255,255,0.9));
+    box-shadow:0 4px 12px rgba(215,38,61,0.3);
+  }
+  .token.cheap::before{
+    content:"↓"; position:absolute; top:-8px; right:-8px;
+    background:#d7263d; color:white; border-radius:50%; width:24px; height:24px;
+    display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold;
+    box-shadow:0 2px 6px rgba(215,38,61,0.4);
   }
   .token.exp{
-    border-color:#28a745; /* приглушенная зеленая рамка для дорогих товаров */
+    border-color:#28a745; 
+    background:linear-gradient(135deg, rgba(40,167,69,0.1), rgba(255,255,255,0.9));
+    box-shadow:0 4px 12px rgba(40,167,69,0.3);
   }
-  
+  .token.exp::before{
+    content:"↑"; position:absolute; top:-8px; right:-8px;
+    background:#28a745; color:white; border-radius:50%; width:24px; height:24px;
+    display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold;
+    box-shadow:0 2px 6px rgba(40,167,69,0.4);
+  }
 
   /* Оверлей для засады */
   .raid-overlay{
