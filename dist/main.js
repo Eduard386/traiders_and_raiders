@@ -10,6 +10,13 @@ const weights = {
     ONE_EXP: 2, // иногда — один товар = 3
     CHEAP_EXP: 1 // редко — один 1 и один 3
 };
+// Счетчик дней
+let dayCounter = 1;
+// Функция для обновления отображения счетчика дней
+function updateDayCounter() {
+    const dayCounterEl = document.getElementById("dayCounter");
+    dayCounterEl.textContent = `(Day ${dayCounter})`;
+}
 const boardEl = document.getElementById("board");
 const btnUpdate = document.getElementById("btnUpdate");
 const btnRaid = document.getElementById("btnRaid");
@@ -53,6 +60,8 @@ function updateTwoCities() {
         const mode = weightedPick(weights);
         cityStates[idx] = newState(mode);
     }
+    dayCounter++;
+    updateDayCounter();
     render();
 }
 function render() {

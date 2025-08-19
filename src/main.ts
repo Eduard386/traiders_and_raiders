@@ -19,6 +19,15 @@ const weights: Record<Mode, number> = {
   CHEAP_EXP: 1   // редко — один 1 и один 3
 };
 
+// Счетчик дней
+let dayCounter = 1;
+
+// Функция для обновления отображения счетчика дней
+function updateDayCounter() {
+  const dayCounterEl = document.getElementById("dayCounter")!;
+  dayCounterEl.textContent = `(Day ${dayCounter})`;
+}
+
 const boardEl = document.getElementById("board")!;
 const btnUpdate = document.getElementById("btnUpdate") as HTMLButtonElement;
 const btnRaid = document.getElementById("btnRaid") as HTMLButtonElement;
@@ -64,6 +73,8 @@ function updateTwoCities(){
     const mode = weightedPick(weights);
     cityStates[idx] = newState(mode);
   }
+  dayCounter++;
+  updateDayCounter();
   render();
 }
 
