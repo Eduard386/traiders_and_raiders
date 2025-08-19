@@ -62,9 +62,8 @@ function render() {
             el.className = "city";
             el.id = `city-${idx}`;
             el.innerHTML = `
-        <h2>${name} <span class="badge" id="badge-${idx}">все = 2</span></h2>
+        <h2>${name}</h2>
         <div class="row" id="row-${idx}"></div>
-        <div class="note" id="note-${idx}"></div>
       `;
             boardEl.appendChild(el);
         });
@@ -73,9 +72,6 @@ function render() {
     cityStates.forEach((st, idx) => {
         const row = document.getElementById(`row-${idx}`);
         row.innerHTML = "";
-        const badge = document.getElementById(`badge-${idx}`);
-        const note = document.getElementById(`note-${idx}`);
-        let label = "все = 2";
         const cheapSet = new Set(st.cheap ?? []);
         const expSet = new Set(st.exp ?? []);
         // Показываем только товары с ценами 1 или 3
@@ -110,25 +106,6 @@ function render() {
                 row.appendChild(t);
             }
         });
-        switch (st.mode) {
-            case "ALL2":
-                label = "все = 2";
-                note.textContent = "—";
-                break;
-            case "ONE_CHEAP":
-                label = "есть 1× дешёвый (1)";
-                note.textContent = "";
-                break;
-            case "ONE_EXP":
-                label = "есть 1× дорогой (3)";
-                note.textContent = "";
-                break;
-            case "CHEAP_EXP":
-                label = "1× дешёвый (1) и 1× дорогой (3)";
-                note.textContent = "";
-                break;
-        }
-        badge.textContent = label;
     });
 }
 btnUpdate.addEventListener("click", updateTwoCities);
