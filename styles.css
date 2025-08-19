@@ -77,6 +77,16 @@
     background:var(--card); border:2px solid var(--border); border-radius:12px;
     padding:12px; display:flex; flex-direction:column; gap:8px;
     min-height: 240px; position:relative; overflow:hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15), 
+                0 4px 12px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+  }
+  .city:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2), 
+                0 6px 16px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.2);
   }
   .location-bg{
     position:absolute; top:0; left:0; right:0; bottom:0;
@@ -92,13 +102,19 @@
   .token{
     padding:0; border:3px solid var(--border); border-radius:16px; 
     background:rgba(255,255,255,0.9); display:inline-block; line-height:0; 
-    position:relative; box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    position:relative; 
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15),
+                0 2px 8px rgba(0,0,0,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.3);
     transition:all 0.3s ease;
     opacity:0; /* Изначально невидимый */
     transform:scale(0.7); /* Изначально уменьшенный */
   }
   .token:hover{
-    transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    transform:translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2),
+                0 4px 12px rgba(0,0,0,0.15),
+                inset 0 1px 0 rgba(255,255,255,0.4);
   }
   .good-image{
     width:90px; height:90px; object-fit:contain;
@@ -107,24 +123,30 @@
   .token.cheap{
     border-color:#d7263d; 
     background:linear-gradient(135deg, rgba(215,38,61,0.1), rgba(255,255,255,0.9));
-    box-shadow:0 4px 12px rgba(215,38,61,0.3);
+    box-shadow: 0 6px 16px rgba(215,38,61,0.4),
+                0 2px 8px rgba(215,38,61,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.3);
   }
   .token.cheap::before{
     content:"↓"; position:absolute; top:-8px; right:-8px;
     background:#d7263d; color:white; border-radius:50%; width:24px; height:24px;
     display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold;
-    box-shadow:0 2px 6px rgba(215,38,61,0.4);
+    box-shadow: 0 3px 8px rgba(215,38,61,0.5),
+                0 1px 4px rgba(215,38,61,0.3);
   }
   .token.exp{
     border-color:#28a745; 
     background:linear-gradient(135deg, rgba(40,167,69,0.1), rgba(255,255,255,0.9));
-    box-shadow:0 4px 12px rgba(40,167,69,0.3);
+    box-shadow: 0 6px 16px rgba(40,167,69,0.4),
+                0 2px 8px rgba(40,167,69,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.3);
   }
   .token.exp::before{
     content:"↑"; position:absolute; top:-8px; right:-8px;
     background:#28a745; color:white; border-radius:50%; width:24px; height:24px;
     display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold;
-    box-shadow:0 2px 6px rgba(40,167,69,0.4);
+    box-shadow: 0 3px 8px rgba(40,167,69,0.5),
+                0 1px 4px rgba(40,167,69,0.3);
   }
 
   /* Оверлей для засады */
