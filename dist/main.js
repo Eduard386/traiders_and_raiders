@@ -1,5 +1,6 @@
 "use strict";
 const GOODS = ["Зерно", "Соль", "Шерсть", "Скот", "Бронза", "Древесина"];
+const GOODS_IMAGES = ["Grain.png", "Salt.png", "Wool.png", "Cattle.png", "Bronze.png", "Wood.png"];
 const CITIES = ["Портовый", "Горная крепость", "Лесная деревня", "Оазис"];
 const weights = {
     // A×3, B×2, C×2, D×1
@@ -77,25 +78,37 @@ function render() {
         let label = "все = 2";
         const cheapSet = new Set(st.cheap ?? []);
         const expSet = new Set(st.exp ?? []);
+        // Показываем только товары с ценами 1 или 3
         GOODS.forEach((g, i) => {
-            let cls = "token";
-            let val = "2";
-            if (cheapSet.has(i)) {
-                cls += " cheap";
-                val = "1";
+            const isCheap = cheapSet.has(i);
+            const isExp = expSet.has(i);
+            // Показываем только если цена не 2
+            if (isCheap || isExp) {
+                const val = isCheap ? "1" : "3";
+                const cls = isCheap ? "token cheap" : "token exp";
+                const t = document.createElement("div");
+                t.className = cls;
+                // Создаем картинку товара
+                const img = document.createElement("img");
+                img.src = `assets/goods/${GOODS_IMAGES[i]}`;
+                img.alt = g;
+                img.className = "good-image";
+                // Создаем контейнер для цены и стрелки
+                const priceContainer = document.createElement("div");
+                priceContainer.className = "price-container";
+                const priceSpan = document.createElement("span");
+                priceSpan.className = "val";
+                priceSpan.textContent = val;
+                // Добавляем стрелку
+                const arrow = document.createElement("span");
+                arrow.className = `arrow ${isCheap ? 'down' : 'up'}`;
+                arrow.textContent = isCheap ? '↓' : '↑';
+                priceContainer.appendChild(priceSpan);
+                priceContainer.appendChild(arrow);
+                t.appendChild(img);
+                t.appendChild(priceContainer);
+                row.appendChild(t);
             }
-            else if (expSet.has(i)) {
-                cls += " exp";
-                val = "3";
-            }
-            const t = document.createElement("div");
-            t.className = cls;
-            t.textContent = g + " ";
-            const sp = document.createElement("span");
-            sp.className = "val";
-            sp.textContent = val;
-            t.appendChild(sp);
-            row.appendChild(t);
         });
         switch (st.mode) {
             case "ALL2":

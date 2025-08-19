@@ -37,12 +37,25 @@
   .badge{font-size:12px; color:#fff; background:#555; padding:2px 8px; border-radius:999px}
   .row{display:flex; flex-wrap:wrap; gap:6px}
   .token{
-    padding:6px 8px; border:1px dashed var(--border); border-radius:8px; background:#fff;
-    font-size:14px
+    padding:12px; border:2px solid var(--border); border-radius:12px; background:#fff;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    min-width:80px; text-align:center;
   }
-  .token .val{font-weight:700; margin-left:6px}
+  .good-image{
+    width:48px; height:48px; object-fit:contain;
+    border-radius:8px;
+  }
+  .price-container{
+    display:flex; align-items:center; gap:4px; font-weight:700;
+  }
+  .token .val{font-size:16px}
   .token.cheap .val{color:var(--cheap)}
   .token.exp   .val{color:var(--exp)}
+  .arrow{
+    font-size:14px; font-weight:bold;
+  }
+  .arrow.up{color:green}
+  .arrow.down{color:var(--exp)}
   .note{color:var(--muted); font-size:13px}
   
   footer{padding:8px 12px 16px; color:var(--muted)}
