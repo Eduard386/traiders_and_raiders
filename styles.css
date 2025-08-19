@@ -56,10 +56,9 @@
     background-size:cover; background-position:center; background-repeat:no-repeat;
     opacity:0.8; z-index:0;
   }
-  .city h2, .city .row{
-    position:relative; z-index:1;
-  }
-  .city h2{margin:0; font-size:18px}
+            .city .row{
+            position:relative; z-index:1; padding-top:60px;
+          }
   .row{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; align-items:center; min-height:120px}
   .token{
     padding:0; border:6px solid var(--border); border-radius:16px; background:transparent;
@@ -87,10 +86,10 @@
   .raid-overlay.active{
     opacity:1; visibility:visible;
   }
-  .raid-image{
-    max-width:80%; max-height:80%; object-fit:contain;
-    animation:raidPulse 5s ease-in-out;
-  }
+            .raid-image{
+            max-width:80%; max-height:80%; object-fit:contain;
+            border-radius:20px;
+          }
   @keyframes raidPulse{
     0%{transform:scale(0.8); opacity:0}
     20%{transform:scale(1.1); opacity:1}

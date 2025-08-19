@@ -74,11 +74,10 @@ function render(){
       const el = document.createElement("section");
       el.className = "city";
       el.id = `city-${idx}`;
-      el.innerHTML = `
-        <div class="location-bg" style="background-image: url('assets/locations/${LOCATION_IMAGES[idx]}')"></div>
-        <h2>${name}</h2>
-        <div class="row" id="row-${idx}"></div>
-      `;
+                    el.innerHTML = `
+                <div class="location-bg" style="background-image: url('assets/locations/${LOCATION_IMAGES[idx]}')"></div>
+                <div class="row" id="row-${idx}"></div>
+              `;
       boardEl.appendChild(el);
     });
   }
@@ -122,7 +121,16 @@ btnRaid.addEventListener("click", ()=>{
   if(hit){
     // Показываем анимацию засады
     const raidOverlay = document.getElementById("raidOverlay")!;
+    const raidImage = document.getElementById("raidImage")!;
+    
+    // Перезапускаем анимацию
+    raidImage.style.animation = 'none';
     raidOverlay.classList.add("active");
+    
+    // Принудительно перезапускаем анимацию
+    setTimeout(() => {
+      raidImage.style.animation = 'raidPulse 5s ease-in-out';
+    }, 10);
     
     // Скрываем через 5 секунд и очищаем результат
     setTimeout(() => {
@@ -132,7 +140,16 @@ btnRaid.addEventListener("click", ()=>{
   }else{
     // Показываем анимацию безопасного путешествия
     const travelOverlay = document.getElementById("travelOverlay")!;
+    const travelImage = document.getElementById("travelImage")!;
+    
+    // Перезапускаем анимацию
+    travelImage.style.animation = 'none';
     travelOverlay.classList.add("active");
+    
+    // Принудительно перезапускаем анимацию
+    setTimeout(() => {
+      travelImage.style.animation = 'raidPulse 5s ease-in-out';
+    }, 10);
     
     // Скрываем через 5 секунд и очищаем результат
     setTimeout(() => {
