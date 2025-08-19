@@ -95,7 +95,6 @@ function render(){
       
       // Показываем только если цена не 2
       if(isCheap || isExp){
-        const val = isCheap ? "1" : "3";
         const cls = isCheap ? "token cheap" : "token exp";
         
         const t = document.createElement("div");
@@ -107,24 +106,7 @@ function render(){
         img.alt = g;
         img.className = "good-image";
         
-        // Создаем контейнер для цены и стрелки
-        const priceContainer = document.createElement("div");
-        priceContainer.className = "price-container";
-        
-        const priceSpan = document.createElement("span");
-        priceSpan.className = "val";
-        priceSpan.textContent = val;
-        
-        // Добавляем стрелку
-        const arrow = document.createElement("span");
-        arrow.className = `arrow ${isCheap ? 'down' : 'up'}`;
-        arrow.textContent = isCheap ? '↓' : '↑';
-        
-        priceContainer.appendChild(priceSpan);
-        priceContainer.appendChild(arrow);
-        
         t.appendChild(img);
-        t.appendChild(priceContainer);
         row.appendChild(t);
       }
     });
