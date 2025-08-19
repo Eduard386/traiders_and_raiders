@@ -16,15 +16,16 @@
     padding:12px; display:flex; flex-direction:column; align-items:center; gap:12px;
   }
   .game-title{
-    font-size:32px; font-weight:bold; color:var(--ink);
-    text-align:center; letter-spacing:2px;
+    font-size:36px; font-weight:bold; color:var(--ink);
+    text-align:center; letter-spacing:3px;
     text-shadow:2px 2px 4px rgba(0,0,0,0.3);
-    margin:0;
+    margin:0; line-height:1.2;
   }
   #dayCounter{
-    font-size:24px; font-weight:normal; 
-    color:var(--ink); opacity:0.8;
+    font-size:20px; font-weight:normal; 
+    color:var(--ink); opacity:0.7;
     text-shadow:1px 1px 2px rgba(0,0,0,0.2);
+    letter-spacing:1px;
   }
   .controls-container{
     display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:20px 12px;
@@ -40,14 +41,15 @@
   }
   /* Вариант 1: Пергаментные свитки */
   button{
-    padding:14px 20px; font-size:16px; font-weight:bold; font-family: inherit;
+    padding:16px 24px; font-size:16px; font-weight:bold; font-family: inherit;
     border:none; border-radius:8px; cursor:pointer; position:relative;
     background:linear-gradient(145deg, #f4e4bc, #e8d5a3);
     color:#5a4a2a; text-shadow:1px 1px 2px rgba(0,0,0,0.1);
     box-shadow:0 4px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.3);
     transition:all 0.3s ease;
     border:2px solid #c9b899;
-    width:160px; /* Фиксированная ширина для обеих кнопок */
+    width:220px; /* Фиксированная ширина для обеих кнопок */
+    letter-spacing:1px; line-height:1.1; text-transform:uppercase;
   }
   button::before{
     content:""; position:absolute; top:-2px; left:-2px; right:-2px; bottom:-2px;
@@ -94,7 +96,7 @@
       opacity: 0;
     }
   }
-  #raidResult{min-width:160px; font-weight:600}
+  #raidResult{min-width:160px; font-weight:600; font-size:14px; letter-spacing:0.5px;}
   
   .grid{
     display:grid;
@@ -103,19 +105,22 @@
     gap:12px; padding:12px;
   }
   .city{
-    background:var(--card); border:2px solid var(--border); border-radius:12px;
-    padding:12px; display:flex; flex-direction:column; gap:8px;
+    background:var(--card); border:3px solid rgba(0,0,0,0.4); border-radius:16px;
+    padding:16px; display:flex; flex-direction:column; gap:8px;
     min-height: 240px; position:relative; overflow:hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.15), 
                 0 4px 12px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.1);
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 0 1px rgba(255,255,255,0.1);
     transition: all 0.3s ease;
   }
   .city:hover{
     transform: translateY(-4px);
     box-shadow: 0 12px 32px rgba(0,0,0,0.2), 
                 0 6px 16px rgba(0,0,0,0.15),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                0 0 0 2px rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.3);
   }
   .location-bg{
     position:absolute; top:0; left:0; right:0; bottom:0;
@@ -158,8 +163,8 @@
   }
   .token.cheap::before{
     content:"↓"; position:absolute; top:-8px; right:-8px;
-    background:#d7263d; color:white; border-radius:50%; width:24px; height:24px;
-    display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold;
+    background:#d7263d; color:white; border-radius:50%; width:26px; height:26px;
+    display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:bold;
     box-shadow: 0 3px 8px rgba(215,38,61,0.5),
                 0 1px 4px rgba(215,38,61,0.3);
   }
@@ -172,8 +177,8 @@
   }
   .token.exp::before{
     content:"↑"; position:absolute; top:-8px; right:-8px;
-    background:#28a745; color:white; border-radius:50%; width:24px; height:24px;
-    display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold;
+    background:#28a745; color:white; border-radius:50%; width:26px; height:26px;
+    display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:bold;
     box-shadow: 0 3px 8px rgba(40,167,69,0.5),
                 0 1px 4px rgba(40,167,69,0.3);
   }
