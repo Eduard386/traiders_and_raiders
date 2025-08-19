@@ -1,7 +1,8 @@
 "use strict";
 const GOODS = ["Зерно", "Соль", "Шерсть", "Скот", "Бронза", "Древесина"];
 const GOODS_IMAGES = ["Grain.png", "Salt.png", "Wool.png", "Cattle.png", "Bronze.png", "Wood.png"];
-const CITIES = ["Портовый", "Горная крепость", "Лесная деревня", "Оазис"];
+const CITIES = ["Деревня у моря", "Деревня в лесу", "Деревня в горах", "Деревня в пустыне"];
+const LOCATION_IMAGES = ["sea.png", "forest.png", "mountains.png", "desert.png"];
 const weights = {
     // A×3, B×2, C×2, D×1
     ALL2: 3, // чаще всего — всё по 2
@@ -62,6 +63,7 @@ function render() {
             el.className = "city";
             el.id = `city-${idx}`;
             el.innerHTML = `
+        <div class="location-bg" style="background-image: url('assets/locations/${LOCATION_IMAGES[idx]}')"></div>
         <h2>${name}</h2>
         <div class="row" id="row-${idx}"></div>
       `;
@@ -98,12 +100,24 @@ btnUpdate.addEventListener("click", updateTwoCities);
 btnRaid.addEventListener("click", () => {
     const hit = Math.random() < 0.5;
     if (hit) {
-        raidResult.textContent = "Засада! Без охраны: потеряешь 2/3 стоимости груза. С охраной: заплати 1/3 и едешь безопасно.";
-        raidResult.style.color = "#d7263d";
+        // Показываем анимацию засады
+        const raidOverlay = document.getElementById("raidOverlay");
+        raidOverlay.classList.add("active");
+        // Скрываем через 5 секунд и очищаем результат
+        setTimeout(() => {
+            raidOverlay.classList.remove("active");
+            raidResult.textContent = "";
+        }, 5000);
     }
     else {
-        raidResult.textContent = "Чисто — проезжай.";
-        raidResult.style.color = "green";
+        // Показываем анимацию безопасного путешествия
+        const travelOverlay = document.getElementById("travelOverlay");
+        travelOverlay.classList.add("active");
+        // Скрываем через 5 секунд и очищаем результат
+        setTimeout(() => {
+            travelOverlay.classList.remove("active");
+            raidResult.textContent = "";
+        }, 5000);
     }
 });
 // начальный рендер

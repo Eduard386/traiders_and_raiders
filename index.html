@@ -9,21 +9,32 @@
 </head>
 <body>
   <header>
-    <h1>Traiders & Raiders</h1>
-    <div class="controls">
-      <button id="btnUpdate" class="primary">Обновить цены (2 города)</button>
-      <button id="btnRaid">Проверить засаду (50%)</button>
-      <span id="raidResult" aria-live="polite"></span>
-    </div>
+    <div class="game-title">𝐓𝐫𝐚𝐢𝐝𝐞𝐫𝐬 & 𝐑𝐚𝐢𝐝𝐞𝐫𝐬</div>
   </header>
 
   <main id="board" class="grid">
     <!-- 4 виджета городов -->
   </main>
 
-  <footer>
-    <small>База: все товары = 2. Показаны только дешёвые (1) и дорогие (3).</small>
-  </footer>
+  <div class="controls-container">
+    <div class="controls">
+      <button id="btnUpdate" class="primary">Обновить цены (2 города)</button>
+    </div>
+    <div class="controls">
+      <button id="btnRaid">Проверить засаду (50%)</button>
+      <span id="raidResult" aria-live="polite"></span>
+    </div>
+  </div>
+
+  <!-- Оверлей для засады -->
+  <div class="raid-overlay" id="raidOverlay">
+    <img src="assets/raiders.png" alt="Raiders" class="raid-image" id="raidImage">
+  </div>
+
+  <!-- Оверлей для безопасного путешествия -->
+  <div class="raid-overlay" id="travelOverlay">
+    <img src="assets/traveling.png" alt="Traveling" class="raid-image" id="travelImage">
+  </div>
 
   <!-- Готовый JS (собран из TypeScript) -->
   <script type="module" src="dist/main.js"></script>
