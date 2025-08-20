@@ -13,10 +13,10 @@ interface CityState {
 
 const weights: Record<Mode, number> = {
   // A×3, B×2, C×2, D×1
-  ALL2: 3,       // чаще всего — всё по 2
+  ALL2: 1,       // редко — всё по 2
   ONE_CHEAP: 2,  // иногда — один товар = 1
   ONE_EXP: 2,    // иногда — один товар = 3
-  CHEAP_EXP: 1   // редко — один 1 и один 3
+  CHEAP_EXP: 3   // чаще всего — один 1 и один 3
 };
 
 // Счетчик дней
@@ -130,15 +130,61 @@ function render(){
   });
 }
 
+// Функция для эффекта смены дня и ночи
+function playDayNightCycle() {
+  const nightOverlay = document.getElementById("nightOverlay")!;
+  const dawnOverlay = document.getElementById("dawnOverlay")!;
+  const roosterSound = document.getElementById("roosterSound") as HTMLAudioElement;
+  
+  // Фаза 1: Наступление ночи (2 секунды - медленное затемнение)
+  nightOverlay.classList.add("active");
+  
+  setTimeout(() => {
+    // Фаза 2: Пауза в темноте (0.5 секунды), затем плавный переход к рассвету
+    setTimeout(() => {
+      // Плавно переключаемся с ночи на рассвет
+      dawnOverlay.classList.add("active");
+      
+      // Воспроизводим звук петуха через 1 секунду после начала рассвета
+      setTimeout(() => {
+        if (roosterSound) {
+          roosterSound.currentTime = 0;
+          roosterSound.play().catch(e => console.log("Не удалось воспроизвести звук петуха:", e));
+        }
+      }, 1000);
+      
+      // Убираем ночь более плавно - через 1 секунду после начала рассвета
+      setTimeout(() => {
+        nightOverlay.classList.remove("active");
+      }, 1000); // Увеличили с 500 до 1000 мс для более плавного перехода
+      
+    }, 500); // Пауза в темноте
+    
+    // Фаза 3: Держим рассвет на пике (2 секунды), затем плавно убираем
+    setTimeout(() => {
+      // Начинаем плавно убирать рассвет
+      dawnOverlay.classList.remove("active");
+    }, 3500); // 500 (пауза) + 3000 (время нарастания рассвета)
+    
+  }, 2000); // Время полного затемнения
+}
+
 btnUpdate.addEventListener("click", (e) => {
   createParticles(e.target as HTMLElement);
-  updateTwoCities();
+  
+  // Запускаем эффект дня и ночи
+  playDayNightCycle();
+  
+  // Обновляем цены с небольшой задержкой для синхронизации с эффектом
+  setTimeout(() => {
+    updateTwoCities();
+  }, 4000); // Обновляем в момент пика рассвета (2000 + 500 + 1500)
 });
 
 btnRaid.addEventListener("click", (e)=>{
   createParticles(e.target as HTMLElement);
   
-  const hit = Math.random() < 0.5;
+  const hit = Math.random() < 0.33;
   if(hit){
     // Показываем анимацию засады
     const raidOverlay = document.getElementById("raidOverlay")!;
@@ -219,3 +265,4 @@ function createParticles(button: HTMLElement) {
 
 // начальный рендер
 render();
+updateDayCounter();

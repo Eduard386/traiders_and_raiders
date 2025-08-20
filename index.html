@@ -36,6 +36,21 @@
     <img src="assets/traveling.png" alt="Traveling" class="raid-image" id="travelImage">
   </div>
 
+  <!-- Эффект смены дня и ночи -->
+  <div class="day-night-overlay" id="nightOverlay">
+    <div class="night-effect"></div>
+  </div>
+  
+  <div class="day-night-overlay" id="dawnOverlay">
+    <div class="dawn-effect"></div>
+  </div>
+
+  <!-- Звук крика петуха -->
+  <audio id="roosterSound" preload="auto">
+    <source src="assets/rooster crow.mp3" type="audio/mpeg">
+    <source src="assets/rooster crow.wav" type="audio/wav">
+  </audio>
+
   <!-- Готовый JS (собран из TypeScript) -->
   <script type="module" src="dist/main.js"></script>
 </body>
