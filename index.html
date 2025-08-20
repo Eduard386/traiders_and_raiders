@@ -9,14 +9,20 @@
 </head>
 <body>
   <header>
-    <div class="game-title">𝐓𝐫𝐚𝐢𝐝𝐞𝐫𝐬 & 𝐑𝐚𝐢𝐝𝐞𝐫𝐬 <span id="dayCounter">(Day 1)</span></div>
+    <div class="game-title">𝐓𝐫𝐚𝐢𝐝𝐞𝐫𝐬 & 𝐑𝐚𝐢𝐝𝐞𝐫𝐬 <span id="dayCounter" style="display: none;">(Day 0)</span></div>
   </header>
 
   <main id="board" class="grid">
     <!-- 4 виджета городов -->
   </main>
 
-  <div class="controls-container">
+  <div class="controls-container" id="startContainer" style="display: flex; justify-content: center;">
+    <div class="controls">
+      <button id="btnStart" class="primary" style="display: block;">Start</button>
+    </div>
+  </div>
+  
+  <div class="controls-container" id="gameControls" style="display: none;">
     <div class="controls">
       <button id="btnUpdate" class="primary">Update Prices</button>
     </div>
@@ -59,6 +65,11 @@
   <!-- Звук безопасного путешествия -->
   <audio id="cartSound" preload="auto">
     <source src="assets/cart.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Фоновая музыка -->
+  <audio id="backgroundMusic" preload="auto" loop>
+    <source src="assets/background.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Готовый JS (собран из TypeScript) -->

@@ -39,6 +39,8 @@
   .controls:last-child{
     justify-content:flex-start; /* Кнопка прижата к левому краю правой колонки */
   }
+  
+
   /* Вариант 1: Пергаментные свитки */
   button{
     padding:16px 24px; font-size:16px; font-weight:bold; font-family: inherit;
@@ -73,29 +75,7 @@
     background:linear-gradient(145deg, #d6ba98, #c6aa84);
   }
 
-  /* Эффект частиц для кнопок */
-  .particle {
-    position: absolute;
-    pointer-events: none;
-    background: radial-gradient(circle, #ffd700 0%, #ffed4e 50%, transparent 100%);
-    border-radius: 50%;
-    animation: particleExplosion 1s ease-out forwards;
-  }
 
-  @keyframes particleExplosion {
-    0% {
-      transform: scale(0) translateY(0);
-      opacity: 1;
-    }
-    40% {
-      transform: scale(1) translateY(-40px) translateX(var(--x-offset));
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1) translateY(60px) translateX(var(--x-offset));
-      opacity: 0;
-    }
-  }
   #raidResult{min-width:160px; font-weight:600; font-size:14px; letter-spacing:0.5px;}
   
   .grid{
@@ -113,6 +93,23 @@
                 inset 0 1px 0 rgba(255,255,255,0.15),
                 0 0 0 1px rgba(255,255,255,0.15);
     transition: all 0.3s ease;
+  }
+  
+  /* Уникальные рамки для каждого города */
+  .city-sea {
+    border-color: #4A90E2 !important; /* Светло-синий цвет моря */
+  }
+  
+  .city-forest {
+    border-color: #2E8B57 !important; /* Зеленый цвет леса */
+  }
+  
+  .city-mountain {
+    border-color: #8B7355 !important; /* Серо-коричневый цвет гор */
+  }
+  
+  .city-desert {
+    border-color: #DAA520 !important; /* Желто-оранжевый цвет пустыни */
   }
   .city:hover{
     transform: translateY(-4px);
