@@ -155,6 +155,7 @@ btnRaid.addEventListener("click", (e) => {
         // Показываем анимацию засады
         const raidOverlay = document.getElementById("raidOverlay");
         const raidImage = document.getElementById("raidImage");
+        const raidersSound = document.getElementById("raidersSound");
         // Перезапускаем анимацию
         raidImage.style.animation = 'none';
         raidOverlay.classList.add("active");
@@ -162,6 +163,42 @@ btnRaid.addEventListener("click", (e) => {
         setTimeout(() => {
             raidImage.style.animation = 'raidPulse 5s ease-in-out';
         }, 10);
+        // Воспроизводим звук нападения с fade in
+        if (raidersSound) {
+            raidersSound.currentTime = 0;
+            raidersSound.volume = 0;
+            raidersSound.play().then(() => {
+                // Fade in за 500ms
+                const fadeInDuration = 500;
+                const fadeInSteps = 20;
+                const volumeStep = 1 / fadeInSteps;
+                const stepDuration = fadeInDuration / fadeInSteps;
+                let currentStep = 0;
+                const fadeInInterval = setInterval(() => {
+                    currentStep++;
+                    raidersSound.volume = Math.min(currentStep * volumeStep, 1);
+                    if (currentStep >= fadeInSteps) {
+                        clearInterval(fadeInInterval);
+                        // Fade out за 1000ms (1 секунда) перед окончанием анимации
+                        setTimeout(() => {
+                            const fadeOutDuration = 1000; // Увеличили с 500 до 1000ms
+                            const fadeOutSteps = 20;
+                            const volumeStepOut = 1 / fadeOutSteps;
+                            const stepDurationOut = fadeOutDuration / fadeOutSteps;
+                            let currentStepOut = 0;
+                            const fadeOutInterval = setInterval(() => {
+                                currentStepOut++;
+                                raidersSound.volume = Math.max(1 - (currentStepOut * volumeStepOut), 0);
+                                if (currentStepOut >= fadeOutSteps) {
+                                    clearInterval(fadeOutInterval);
+                                    raidersSound.pause();
+                                }
+                            }, stepDurationOut);
+                        }, 3500); // Начинаем fade out за 1.5 секунды до окончания анимации (5000 - 1000 - 500)
+                    }
+                }, stepDuration);
+            }).catch(e => console.log("Не удалось воспроизвести звук нападения:", e));
+        }
         // Скрываем через 5 секунд и очищаем результат
         setTimeout(() => {
             raidOverlay.classList.remove("active");
@@ -172,6 +209,7 @@ btnRaid.addEventListener("click", (e) => {
         // Показываем анимацию безопасного путешествия
         const travelOverlay = document.getElementById("travelOverlay");
         const travelImage = document.getElementById("travelImage");
+        const cartSound = document.getElementById("cartSound");
         // Перезапускаем анимацию
         travelImage.style.animation = 'none';
         travelOverlay.classList.add("active");
@@ -179,6 +217,42 @@ btnRaid.addEventListener("click", (e) => {
         setTimeout(() => {
             travelImage.style.animation = 'raidPulse 5s ease-in-out';
         }, 10);
+        // Воспроизводим звук безопасного путешествия с fade in
+        if (cartSound) {
+            cartSound.currentTime = 0;
+            cartSound.volume = 0;
+            cartSound.play().then(() => {
+                // Fade in за 500ms
+                const fadeInDuration = 500;
+                const fadeInSteps = 20;
+                const volumeStep = 1 / fadeInSteps;
+                const stepDuration = fadeInDuration / fadeInSteps;
+                let currentStep = 0;
+                const fadeInInterval = setInterval(() => {
+                    currentStep++;
+                    cartSound.volume = Math.min(currentStep * volumeStep, 1);
+                    if (currentStep >= fadeInSteps) {
+                        clearInterval(fadeInInterval);
+                        // Fade out за 1000ms (1 секунда) перед окончанием анимации
+                        setTimeout(() => {
+                            const fadeOutDuration = 1000; // Увеличили с 500 до 1000ms
+                            const fadeOutSteps = 20;
+                            const volumeStepOut = 1 / fadeOutSteps;
+                            const stepDurationOut = fadeOutDuration / fadeOutSteps;
+                            let currentStepOut = 0;
+                            const fadeOutInterval = setInterval(() => {
+                                currentStepOut++;
+                                cartSound.volume = Math.max(1 - (currentStepOut * volumeStepOut), 0);
+                                if (currentStepOut >= fadeOutSteps) {
+                                    clearInterval(fadeOutInterval);
+                                    cartSound.pause();
+                                }
+                            }, stepDurationOut);
+                        }, 3500); // Начинаем fade out за 1.5 секунды до окончания анимации (5000 - 1000 - 500)
+                    }
+                }, stepDuration);
+            }).catch(e => console.log("Не удалось воспроизвести звук путешествия:", e));
+        }
         // Скрываем через 5 секунд и очищаем результат
         setTimeout(() => {
             travelOverlay.classList.remove("active");
